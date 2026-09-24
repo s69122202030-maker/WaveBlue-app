@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-   
+    
     <script>
         tailwind.config = {
             theme: {
@@ -47,11 +47,6 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-        .glass-dark {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
         .pulse-node {
             animation: pulse 2s infinite;
         }
@@ -62,10 +57,12 @@
         }
         .edge-line {
             transition: all 0.3s ease;
+            stroke: #cbd5e1;
+            stroke-width: 3;
         }
-        .active-edge {
-            stroke: #38bdf8 !important;
-            stroke-width: 5px !important;
+        .path-active {
+            stroke: #0284c7 !important;
+            stroke-width: 6px !important;
             filter: drop-shadow(0 0 6px #38bdf8);
             stroke-dasharray: 8;
             animation: dash 1s linear infinite;
@@ -84,11 +81,9 @@
                 <!-- Brand Logo -->
                 <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('page1')">
                     <div class="w-12 h-12 bg-gradient-to-tr from-brand-600 via-aqua to-teal-300 rounded-2xl flex items-center justify-center shadow-lg shadow-brand-500/30 transform hover:rotate-6 transition-transform">
-                        <!-- Custom Wave + Vertex Logo SVG -->
                         <svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 65 Q 30 40, 50 65 T 90 65 V 85 H 10 Z" fill="currentColor" fill-opacity="0.4"/>
                             <path d="M10 50 Q 30 25, 50 50 T 90 50" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>
-                            <!-- Connected Vertices embedded in wave -->
                             <circle cx="25" cy="40" r="5" fill="#67e8f9"/>
                             <circle cx="50" cy="50" r="6" fill="#10b981"/>
                             <circle cx="75" cy="38" r="5" fill="#38bdf8"/>
@@ -154,19 +149,7 @@
 
         <!-- ==================== PAGE 1: OVERVIEW & HOME ==================== -->
         <section id="page1" class="page-content space-y-12">
-            <!-- Hero Banner -->
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 via-brand-700 to-aqua-dark text-white shadow-2xl p-8 sm:p-12 lg:p-16">
-                <div class="absolute inset-0 opacity-20 pointer-events-none">
-                    <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1"/>
-                            </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-                    </svg>
-                </div>
-               
                 <div class="relative z-10 max-w-3xl space-y-6">
                     <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-200 text-xs font-semibold uppercase tracking-wider">
                         <i class="fa-solid fa-sparkles"></i>
@@ -189,7 +172,7 @@
                 </div>
             </div>
 
-            <!-- Quick Stats & Feature Cards -->
+            <!-- Stats -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 <div class="glass-panel p-6 rounded-2xl border border-slate-100 shadow-sm text-center">
                     <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-xl">
@@ -220,69 +203,6 @@
                     <div class="text-xs text-slate-500 font-medium mt-1">ความประทับใจจากผู้ใช้บริการ</div>
                 </div>
             </div>
-
-            <!-- Highlights Zone Showcase -->
-            <div class="space-y-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-800">โซนไฮไลท์ที่ไม่ควรพลาด</h2>
-                        <p class="text-slate-500 text-sm">ค้นพบประสบการณ์ความบันเทิงที่ตอบโจทย์ทุกคนในครอบครัว</p>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Zone Card 1 -->
-                    <div class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
-                        <div class="relative h-48 bg-slate-800 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1582650625119-3a31f8fa2699?auto=format&fit=crop&w=800&q=80" alt="Wave Pool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/0284c7/ffffff?text=Wave+Pool'">
-                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold"> Water Park</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">ทะเลคลื่นเทียม Giant Wave Pool</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">สัมผัสคลื่นทะเลจำลองขนาดยักษ์สูงถึง 2.5 เมตร ให้คุณได้โต้คลื่นอย่างสนุกสนานบนห่วงยางนิรภัย</p>
-                            </div>
-                            <button onclick="switchTab('page3')" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-                                ดูเส้นทางบนแผนที่ <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Zone Card 2 -->
-                    <div class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
-                        <div class="relative h-48 bg-slate-800 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80" alt="Safari Zoo Zone" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/10b981/ffffff?text=Safari+Zone'">
-                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold"> Zoo & Safari</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">โซนซาฟารีสัตว์ป่าแอฟริกา</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">ใกล้ชิดกับยีราฟ ม้าลาย และนกฟลามิงโกในบรรยากาศจำลองธรรมชาติแบบเปิด พร้อมมัคคุเทศก์ให้ความรู้</p>
-                            </div>
-                            <button onclick="switchTab('page3')" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-                                ดูเส้นทางบนแผนที่ <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Zone Card 3 -->
-                    <div class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col">
-                        <div class="relative h-48 bg-slate-800 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Tsunami Slide" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/800x600/06b6d4/ffffff?text=Extreme+Slide'">
-                            <span class="absolute top-4 right-4 px-3 py-1 rounded-full bg-slate-900/70 backdrop-blur-md text-white text-xs font-semibold"> Extreme Ride</span>
-                        </div>
-                        <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-brand-600 transition-colors">สไลเดอร์ความเร็วสูง Tsunami</h3>
-                                <p class="text-slate-600 text-sm mt-2 leading-relaxed">สไลเดอร์ท้าความเสียวดิ่งพลองจากความสูงเท่าตึก 6 ชั้น ด้วยความเร็วสูงสุด 50 กม./ชม.</p>
-                            </div>
-                            <button onclick="switchTab('page3')" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-                                ดูเส้นทางบนแผนที่ <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- ==================== PAGE 2: TICKET BOOKING ==================== -->
@@ -293,26 +213,20 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Ticket List Section (2 cols) -->
+                <!-- Ticket List Section -->
                 <div class="lg:col-span-2 space-y-6">
                     <h2 class="text-xl font-bold text-slate-800 flex items-center">
                         <i class="fa-solid fa-ticket text-brand-500 mr-2"></i>1. เลือกแพ็กเกจบัตรผ่านประตู
                     </h2>
-
-                    <div class="space-y-4" id="ticket-options-container">
-                        <!-- Dynamic items generated by JS -->
-                    </div>
+                    <div class="space-y-4" id="ticket-options-container"></div>
 
                     <h2 class="text-xl font-bold text-slate-800 flex items-center pt-4">
                         <i class="fa-solid fa-concierge-bell text-brand-500 mr-2"></i>2. บริการเสริมและความสะดวกสบาย
                     </h2>
-
-                    <div class="grid sm:grid-cols-2 gap-4" id="addon-options-container">
-                        <!-- Dynamic add-ons generated by JS -->
-                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4" id="addon-options-container"></div>
                 </div>
 
-                <!-- Order Summary Side Panel (1 col) -->
+                <!-- Order Summary Side Panel -->
                 <div class="lg:col-span-1">
                     <div class="glass-panel p-6 rounded-3xl border border-slate-200 shadow-xl sticky top-28 space-y-6">
                         <h3 class="text-lg font-bold text-slate-800 border-b pb-3 flex items-center justify-between">
@@ -320,15 +234,8 @@
                             <i class="fa-solid fa-cart-shopping text-brand-500"></i>
                         </h3>
 
-                        <!-- Cart Items List -->
-                        <div id="cart-items-list" class="space-y-3 max-h-60 overflow-y-auto text-sm divide-y divide-slate-100 pr-1">
-                            <div class="text-center py-8 text-slate-400">
-                                <i class="fa-solid fa-basket-shopping text-3xl mb-2"></i>
-                                <p>ยังไม่มีรายการในตะกร้า</p>
-                            </div>
-                        </div>
+                        <div id="cart-items-list" class="space-y-3 max-h-60 overflow-y-auto text-sm divide-y divide-slate-100 pr-1"></div>
 
-                        <!-- Promo Code Input -->
                         <div class="pt-2">
                             <label class="block text-xs font-semibold text-slate-500 mb-1">รหัสส่วนลด (Promo Code)</label>
                             <div class="flex space-x-2">
@@ -338,7 +245,6 @@
                             <p id="promo-message" class="text-xs mt-1 hidden"></p>
                         </div>
 
-                        <!-- Price Breakdown -->
                         <div class="space-y-2 text-sm border-t pt-4">
                             <div class="flex justify-between text-slate-600">
                                 <span>ราคารวมสินค้า:</span>
@@ -354,429 +260,388 @@
                             </div>
                         </div>
 
-                        <!-- Checkout CTA -->
-                        <button onclick="openCheckoutModal()" id="checkout-btn" disabled class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-brand-600 to-aqua text-white font-bold text-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-brand-500/30 transition-all">
-                            ไปที่หน้าชำระเงิน <i class="fa-solid fa-credit-card ml-2"></i>
+                        <button onclick="switchTab('page4')" id="checkout-btn" class="w-full py-3.5 rounded-2xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-center transition-all shadow-md">
+                            ไปที่หน้าชำระเงิน <i class="fa-solid fa-arrow-right ml-1"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== PAGE 3: ROUTE & ZONE NAVIGATOR (GRAPH & TREE) ==================== -->
-        <section id="page3" class="page-content hidden space-y-12">
-            <!-- Section Header -->
-            <div class="bg-gradient-to-r from-slate-900 via-brand-900 to-slate-900 p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
-                <div class="relative z-10 max-w-3xl space-y-2">
-                    <span class="text-xs font-bold uppercase tracking-widest text-teal-300 bg-white/10 px-3 py-1 rounded-full">Interactive Route Navigator</span>
-                    <h1 class="text-3xl font-extrabold">ผังเครื่องเล่น & ระบบนำทางอัจฉริยะ</h1>
-                    <p class="text-slate-300 text-sm">วางแผนการเดินท่องเที่ยวในสวนน้ำ Wave Blue อย่างมีประสิทธิภาพ ค้นหาเส้นทางที่สั้นที่สุดและสำรวจหมวดหมู่เครื่องเล่นแบบตอบโต้</p>
+        <!-- ==================== PAGE 3: PARK GRAPH & MAP ==================== -->
+        <section id="page3" class="page-content hidden space-y-8">
+            <div class="bg-gradient-to-r from-brand-800 to-slate-800 p-6 rounded-3xl text-white shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h1 class="text-2xl font-extrabold">ระบบคำนวณเส้นทางและผังเครื่องเล่น</h1>
+                    <p class="text-slate-300 text-sm mt-1">ใช้ Graph Algorithms ช่วยค้นหาเส้นทางที่ดีที่สุดตามความต้องการของคุณ</p>
                 </div>
             </div>
 
-            <!-- GRAPH THEORY SECTION -->
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-6">
-                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b pb-4">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-800 flex items-center">
-                            <i class="fa-solid fa-diagram-project text-brand-600 mr-3"></i>แผนที่เส้นทางสวนน้ำ (Weighted Graph Navigator)
-                        </h2>
-                        <p class="text-slate-500 text-xs sm:text-sm mt-1">คำนวณเส้นทางเดินระหว่างจุดบริการ 8 จุดหลัก (Vertices) ด้วยอัลกอริทึมค้นหาเส้นทาง</p>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <button onclick="toggleAdjacencyListModal()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center transition-colors">
-                            <i class="fa-solid fa-code text-brand-600 mr-2"></i>แสดง Adjacency List
-                        </button>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- SVG Map Panel -->
+                <div class="lg:col-span-2 glass-panel p-6 rounded-3xl border border-slate-200 shadow-md space-y-4">
+                    <h2 class="text-lg font-bold text-slate-800 flex items-center justify-between">
+                        <span><i class="fa-solid fa-map-location-dot text-brand-500 mr-2"></i>ผังแผนที่สวนน้ำ (Graph Interactive Map)</span>
+                        <span class="text-xs font-normal text-slate-500">คลิกที่โหนดเพื่อเลือกจุดเริ่มต้น/ปลายทาง</span>
+                    </h2>
+
+                    <!-- Interactive SVG Graph Map -->
+                    <div class="relative w-full bg-slate-900 rounded-2xl p-4 overflow-hidden shadow-inner border border-slate-700 min-h-[380px] flex items-center justify-center">
+                        <svg id="park-svg-map" class="w-full h-auto max-h-[420px]" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Graph Edges -->
+                            <g id="map-edges">
+                                <line id="edge-V1-V2" x1="100" y1="400" x2="250" y2="300" class="edge-line" />
+                                <line id="edge-V1-V8" x1="100" y1="400" x2="200" y2="150" class="edge-line" />
+                                <line id="edge-V2-V3" x1="250" y1="300" x2="450" y2="400" class="edge-line" />
+                                <line id="edge-V2-V4" x1="250" y1="300" x2="350" y2="250" class="edge-line" />
+                                <line id="edge-V3-V6" x1="450" y1="400" x2="600" y2="300" class="edge-line" />
+                                <line id="edge-V4-V5" x1="350" y1="250" x2="500" y2="120" class="edge-line" />
+                                <line id="edge-V4-V6" x1="350" y1="250" x2="600" y2="300" class="edge-line" />
+                                <line id="edge-V4-V7" x1="350" y1="250" x2="350" y2="100" class="edge-line" />
+                                <line id="edge-V5-V6" x1="500" y1="120" x2="600" y2="300" class="edge-line" />
+                                <line id="edge-V5-V7" x1="500" y1="120" x2="350" y2="100" class="edge-line" />
+                                <line id="edge-V7-V8" x1="350" y1="100" x2="200" y2="150" class="edge-line" />
+                            </g>
+
+                            <!-- Graph Nodes -->
+                            <g id="map-nodes">
+                                <g onclick="selectNodeFromMap('V1')" class="cursor-pointer group">
+                                    <circle cx="100" cy="400" r="20" fill="#0284c7" class="transition-transform group-hover:scale-125" />
+                                    <text x="100" y="405" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V1</text>
+                                    <text x="100" y="435" text-anchor="middle" fill="#94a3b8" font-size="11">ทางเข้าหลัก</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V2')" class="cursor-pointer group">
+                                    <circle cx="250" cy="300" r="20" fill="#0284c7" class="transition-transform group-hover:scale-125" />
+                                    <text x="250" y="305" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V2</text>
+                                    <text x="250" y="335" text-anchor="middle" fill="#94a3b8" font-size="11">สระคลื่นยักษ์</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V3')" class="cursor-pointer group">
+                                    <circle cx="450" cy="400" r="20" fill="#0284c7" class="transition-transform group-hover:scale-125" />
+                                    <text x="450" y="405" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V3</text>
+                                    <text x="450" y="435" text-anchor="middle" fill="#94a3b8" font-size="11">สไลเดอร์ยักษ์</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V4')" class="cursor-pointer group">
+                                    <circle cx="350" cy="250" r="20" fill="#0284c7" class="transition-transform group-hover:scale-125" />
+                                    <text x="350" y="255" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V4</text>
+                                    <text x="350" y="285" text-anchor="middle" fill="#94a3b8" font-size="11">สระเด็ก</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V5')" class="cursor-pointer group">
+                                    <circle cx="500" cy="120" r="20" fill="#10b981" class="transition-transform group-hover:scale-125" />
+                                    <text x="500" y="125" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V5</text>
+                                    <text x="500" y="155" text-anchor="middle" fill="#94a3b8" font-size="11">สวนสัตว์ Safari</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V6')" class="cursor-pointer group">
+                                    <circle cx="600" cy="300" r="20" fill="#10b981" class="transition-transform group-hover:scale-125" />
+                                    <text x="600" y="305" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V6</text>
+                                    <text x="600" y="335" text-anchor="middle" fill="#94a3b8" font-size="11">โชว์โลมา</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V7')" class="cursor-pointer group">
+                                    <circle cx="350" cy="100" r="20" fill="#f59e0b" class="transition-transform group-hover:scale-125" />
+                                    <text x="350" y="105" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V7</text>
+                                    <text x="350" y="75" text-anchor="middle" fill="#94a3b8" font-size="11">ศูนย์อาหาร</text>
+                                </g>
+                                <g onclick="selectNodeFromMap('V8')" class="cursor-pointer group">
+                                    <circle cx="200" cy="150" r="20" fill="#ef4444" class="transition-transform group-hover:scale-125" />
+                                    <text x="200" y="155" text-anchor="middle" fill="white" font-weight="bold" font-size="12">V8</text>
+                                    <text x="200" y="125" text-anchor="middle" fill="#94a3b8" font-size="11">ปฐมพยาบาล</text>
+                                </g>
+                            </g>
+                        </svg>
                     </div>
                 </div>
 
-                <!-- Controls & Interactive Selectors -->
-                <div class="grid md:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">จุดเริ่มต้น (Start Vertex):</label>
-                        <select id="graph-start-select" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand-500">
-                            <!-- Populated by JS -->
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">จุดหมายปลายทาง (Destination):</label>
-                        <select id="graph-end-select" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand-500">
-                            <!-- Populated by JS -->
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">เลือกอัลกอริทึมค้นหา:</label>
-                        <select id="graph-algorithm-select" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:border-brand-500">
-                            <option value="dijkstra">Dijkstra (เส้นทางระยะทางสั้นที่สุด)</option>
-                            <option value="bfs">BFS (จำนวนจุดแวะน้อยที่สุด)</option>
-                            <option value="dfs">DFS (เส้นทางสำรวจเชิงลึก)</option>
-                        </select>
-                    </div>
-                    <div class="flex items-end">
-                        <button onclick="calculateGraphRoute()" class="w-full py-2 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md transition-all flex items-center justify-center">
-                            <i class="fa-solid fa-route mr-2"></i>คำนวณเส้นทาง
-                        </button>
-                    </div>
-                </div>
+                <!-- Pathfinding Controller Panel -->
+                <div class="glass-panel p-6 rounded-3xl border border-slate-200 shadow-md space-y-6">
+                    <h2 class="text-lg font-bold text-slate-800 border-b pb-3 flex items-center">
+                        <i class="fa-solid fa-route text-brand-500 mr-2"></i>คำนวณเส้นทางด้วย Graph
+                    </h2>
 
-                <!-- Interactive SVG Canvas Graph Visualizer -->
-                <div class="relative bg-slate-900 rounded-2xl overflow-hidden shadow-inner border border-slate-800 p-4 min-h-[420px] flex items-center justify-center">
-                    <svg id="graph-canvas" class="w-full h-[400px]" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Edges and Vertices rendered by JavaScript -->
-                    </svg>
-                    <!-- Legend Overlay -->
-                    <div class="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md p-3 rounded-xl border border-slate-700 text-xs text-slate-300 space-y-1">
-                        <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span><span>จุดเริ่มต้น / เลือก</span></div>
-                        <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-sky-400 inline-block"></span><span>เส้นทางที่สั้นที่สุด (Path Found)</span></div>
-                        <div class="flex items-center space-x-2"><span class="w-3 h-3 rounded-full bg-slate-600 inline-block"></span><span>โหนดทั่วไป (Vertex)</span></div>
-                    </div>
-                </div>
-
-                <!-- Route Result Summary Panel -->
-                <div id="route-result-box" class="p-5 rounded-2xl bg-brand-50 border border-brand-200 hidden space-y-3">
-                    <div class="flex items-center justify-between">
-                        <h4 class="font-bold text-brand-900 flex items-center text-sm sm:text-base">
-                            <i class="fa-solid fa-circle-check text-emerald-500 mr-2"></i> ผลการคำนวณเส้นทางแนะนำ
-                        </h4>
-                        <span id="route-algo-badge" class="px-2.5 py-1 rounded-full bg-brand-200 text-brand-800 text-xs font-semibold">Dijkstra</span>
-                    </div>
-                    <div class="grid sm:grid-cols-3 gap-4 text-sm bg-white p-4 rounded-xl border border-brand-100">
+                    <div class="space-y-4">
                         <div>
-                            <span class="text-slate-500 text-xs block">เส้นทางผ่าน (Path):</span>
-                            <span id="route-path-text" class="font-bold text-brand-700">V1 ➔ V2 ➔ V3</span>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">จุดเริ่มต้น (Start Node)</label>
+                            <select id="graph-start-select" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                                <option value="V1">V1 - ซุ้มทางเข้าหลัก</option>
+                                <option value="V2">V2 - สระคลื่นยักษ์</option>
+                                <option value="V3">V3 - โซนสไลเดอร์ยักษ์</option>
+                                <option value="V4">V4 - โซนสระเด็ก</option>
+                                <option value="V5">V5 - สวนสัตว์ซาฟารี</option>
+                                <option value="V6">V6 - ลานแสดงโลมา</option>
+                                <option value="V7">V7 - ศูนย์อาหาร</option>
+                                <option value="V8">V8 - อาคารปฐมพยาบาล & ล็อกเกอร์</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">จุดหมายปลายทาง (End Node)</label>
+                            <select id="graph-end-select" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                                <option value="V6" selected>V6 - ลานแสดงโลมา</option>
+                                <option value="V1">V1 - ซุ้มทางเข้าหลัก</option>
+                                <option value="V2">V2 - สระคลื่นยักษ์</option>
+                                <option value="V3">V3 - โซนสไลเดอร์ยักษ์</option>
+                                <option value="V4">V4 - โซนสระเด็ก</option>
+                                <option value="V5">V5 - สวนสัตว์ซาฟารี</option>
+                                <option value="V7">V7 - ศูนย์อาหาร</option>
+                                <option value="V8">V8 - อาคารปฐมพยาบาล & ล็อกเกอร์</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">อัลกอริทึมค้นหา (Algorithm)</label>
+                            <select id="graph-algorithm-select" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-brand-500 outline-none">
+                                <option value="dijkstra">Dijkstra - สั้นที่สุดตามระยะทางจริง (Shortest Path)</option>
+                                <option value="bfs">BFS - จุดแวะน้อยที่สุด (Fewest Hops)</option>
+                                <option value="dfs">DFS - เส้นทางสำรวจเชิงลึก (Exploration Path)</option>
+                            </select>
+                        </div>
+
+                        <button onclick="calculateGraphRoute()" class="w-full py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold transition-colors shadow">
+                            <i class="fa-solid fa-calculator mr-2"></i>คำนวณเส้นทาง
+                        </button>
+                    </div>
+
+                    <!-- Output Box -->
+                    <div id="route-result-box" class="hidden p-4 rounded-2xl bg-brand-50 border border-brand-200 space-y-2 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-brand-700 uppercase">ผลการคำนวณ</span>
+                            <span id="route-algo-badge" class="px-2 py-0.5 rounded-full bg-brand-200 text-brand-800 text-xs font-semibold"></span>
                         </div>
                         <div>
-                            <span class="text-slate-500 text-xs block">ระยะทางรวม (Total Weight):</span>
-                            <span id="route-distance-text" class="font-bold text-slate-800">250 เมตร</span>
+                            <span class="text-slate-500 text-xs">เส้นทางที่แนะนำ:</span>
+                            <div id="route-path-text" class="font-bold text-brand-900 mt-0.5"></div>
                         </div>
-                        <div>
-                            <span class="text-slate-500 text-xs block">เวลาเดินโดยประมาณ:</span>
-                            <span id="route-time-text" class="font-bold text-slate-800">3-4 นาที</span>
+                        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-brand-200 text-xs">
+                            <div>
+                                <span class="text-slate-500">ระยะทางรวม:</span>
+                                <span id="route-distance-text" class="font-bold text-slate-800 block"></span>
+                            </div>
+                            <div>
+                                <span class="text-slate-500">เวลาเดินโดยประมาณ:</span>
+                                <span id="route-time-text" class="font-bold text-slate-800 block"></span>
+                            </div>
                         </div>
                     </div>
-                    <p id="route-explanation-text" class="text-xs text-slate-600 italic">
-                        * ระบบเลือกเส้นทางด้วยน้ำหนักรวมระยะทางน้อยที่สุดเพื่อความสะดวกรวดเร็ว
-                    </p>
-                </div>
-            </div>
 
-            <!-- TREE STRUCTURE SECTION -->
-            <div class="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-md space-y-6">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b pb-4">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-800 flex items-center">
-                            <i class="fa-solid fa-sitemap text-teal-600 mr-3"></i>แผนผังจัดหมวดหมู่โซนสวนน้ำ (Decision & Zone Tree)
-                        </h2>
-                        <p class="text-slate-500 text-xs sm:text-sm mt-1">โครงสร้างข้อมูลแบบลำดับชั้น แสดงความสัมพันธ์ Root, Parent, Child และ Leaf พร้อมภาพจำลอง Traversal</p>
-                    </div>
-                </div>
-
-                <!-- Traversal Interactive Toolbar -->
-                <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-xs font-bold text-slate-600">จำลองการท่องต้นไม้ (Tree Traversal):</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="runTreeTraversal('preorder')" class="px-3.5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-sm">
-                            <i class="fa-solid fa-play mr-1.5"></i>Preorder (Root-L-R)
-                        </button>
-                        <button onclick="runTreeTraversal('postorder')" class="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold transition-all shadow-sm">
-                            <i class="fa-solid fa-play mr-1.5"></i>Postorder (L-R-Root)
-                        </button>
-                        <button onclick="runTreeTraversal('bfs')" class="px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-all shadow-sm">
-                            <i class="fa-solid fa-play mr-1.5"></i>Level-Order (BFS)
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Tree Traversal Log Output -->
-                <div id="tree-traversal-output" class="hidden p-3 rounded-xl bg-slate-900 text-teal-300 font-mono text-xs overflow-x-auto">
-                    <span class="text-slate-400">Traversal Log:</span> <span id="traversal-log-sequence">...</span>
-                </div>
-
-                <!-- Interactive SVG Tree Canvas Container -->
-                <div class="bg-slate-900 rounded-2xl p-4 min-h-[450px] overflow-x-auto flex items-center justify-center border border-slate-800">
-                    <svg id="tree-canvas" class="w-full min-w-[700px] h-[450px]" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Tree nodes rendered by JavaScript -->
-                    </svg>
-                </div>
-
-                <!-- Node Properties Detail Card -->
-                <div id="tree-node-detail" class="p-4 rounded-2xl bg-slate-100 border border-slate-200 text-sm space-y-2">
-                    <div class="font-bold text-slate-800 flex items-center justify-between">
-                        <span id="detail-node-title"><i class="fa-solid fa-info-circle text-brand-500 mr-2"></i>คลิกที่โหนดเพื่อดูรายละเอียดโครงสร้างข้อมูล Tree</span>
-                        <span id="detail-node-type" class="px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-xs">Node Info</span>
-                    </div>
-                    <div class="grid sm:grid-cols-3 gap-2 text-xs text-slate-600 pt-1">
-                        <div><strong>Parent Node:</strong> <span id="detail-parent">-</span></div>
-                        <div><strong>Children Nodes:</strong> <span id="detail-children">-</span></div>
-                        <div><strong>Path จาก Root:</strong> <span id="detail-path">-</span></div>
+                    <!-- Park Category Tree -->
+                    <div class="border-t pt-4">
+                        <h3 class="text-sm font-bold text-slate-800 mb-2">หมวดหมู่สถานที่ (Park Category Tree)</h3>
+                        <div class="text-xs space-y-2">
+                            <div>
+                                <button onclick="toggleTreeNode('tree-water')" class="font-semibold text-brand-600 hover:underline">
+                                    <i class="fa-solid fa-chevron-down mr-1"></i>โซนสวนน้ำ (Water Park Zone)
+                                </button>
+                                <ul id="tree-water" class="ml-4 mt-1 space-y-1 text-slate-600 border-l pl-2">
+                                    <li>• V2: สระคลื่นยักษ์</li>
+                                    <li>• V3: โซนสไลเดอร์ยักษ์</li>
+                                    <li>• V4: โซนสระเด็ก</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <button onclick="toggleTreeNode('tree-zoo')" class="font-semibold text-emerald-600 hover:underline">
+                                    <i class="fa-solid fa-chevron-down mr-1"></i>โซนสวนสัตว์ (Zoo Zone)
+                                </button>
+                                <ul id="tree-zoo" class="ml-4 mt-1 space-y-1 text-slate-600 border-l pl-2">
+                                    <li>• V5: สวนสัตว์ซาฟารี</li>
+                                    <li>• V6: ลานแสดงโลมา</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== PAGE 4: ORDERS & E-TICKETS ==================== -->
+        <!-- ==================== PAGE 4: PAYMENT & RECEIPT ==================== -->
         <section id="page4" class="page-content hidden space-y-8">
-            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 p-8 rounded-3xl text-white shadow-xl">
-                <h1 class="text-3xl font-extrabold mb-2">รายการชำระเงิน & e-Tickets</h1>
-                <p class="text-emerald-100 text-sm sm:text-base">ตรวจสอบประวัติการสั่งซื้อ แสดงตั๋วดิจิทัลพร้อม QR Code สำหรับสแกนเข้าประตูสวนสนุก</p>
-            </div>
+            <div class="max-w-2xl mx-auto glass-panel p-8 rounded-3xl border border-slate-200 shadow-xl space-y-6">
+                <h1 class="text-2xl font-bold text-slate-800 border-b pb-4 flex items-center justify-between">
+                    <span>รายการชำระเงิน</span>
+                    <i class="fa-solid fa-credit-card text-brand-500"></i>
+                </h1>
 
-            <!-- Orders Container -->
-            <div id="paid-orders-container" class="space-y-6">
-                <!-- Orders generated dynamically by JS -->
+                <div id="checkout-summary-list" class="space-y-3 text-sm divide-y">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-2xl border space-y-2 text-sm">
+                    <div class="flex justify-between font-bold text-slate-800 text-base">
+                        <span>ยอดชำระสุทธิทั้งสิ้น:</span>
+                        <span id="final-checkout-total" class="text-brand-600">0 ฿</span>
+                    </div>
+                </div>
+
+                <button onclick="processPayment()" class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-lg rounded-2xl transition-all shadow-lg shadow-emerald-500/30">
+                    <i class="fa-solid fa-lock mr-2"></i>ยืนยันการชำระเงิน
+                </button>
             </div>
         </section>
 
     </main>
 
-    <!-- Checkout Modal -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 transform transition-all">
-            <div class="flex justify-between items-center border-b pb-4">
-                <h3 class="text-xl font-bold text-slate-800 flex items-center">
-                    <i class="fa-solid fa-qrcode text-brand-600 mr-2"></i>ชำระเงินผ่าน PromptPay QR
-                </h3>
-                <button onclick="closeCheckoutModal()" class="text-slate-400 hover:text-slate-600 p-1">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-
-            <div class="text-center space-y-4">
-                <div class="inline-block bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <!-- Dynamic QR Code simulation -->
-                    <img id="qr-code-img" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=WAVEBLUE_PAYMENT" alt="PromptPay QR Code" class="mx-auto rounded-xl shadow-sm" onerror="this.src='https://placehold.co/180x180/0284c7/ffffff?text=PromptPay+QR'">
-                    <p class="text-xs font-medium text-slate-500 mt-2">สแกนด้วยแอปธนาคารใดก็ได้</p>
-                </div>
-
-                <div class="space-y-1">
-                    <p class="text-xs text-slate-500">ยอดเงินที่ต้องชำระ</p>
-                    <p id="modal-pay-amount" class="text-3xl font-extrabold text-brand-600">0 ฿</p>
-                </div>
-
-                <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl text-left text-xs text-amber-800 flex items-start space-x-2">
-                    <i class="fa-solid fa-circle-info mt-0.5 text-amber-600"></i>
-                    <span>ระบบจำลองการชำระเงินออนไลน์ กดปุ่ม "ยืนยันการชำระเงิน" ด้านล่างเพื่อออก e-Ticket ทันที</span>
-                </div>
-            </div>
-
-            <div class="flex space-x-3 pt-2">
-                <button onclick="closeCheckoutModal()" class="w-1/2 py-3 rounded-xl border border-slate-200 font-semibold text-slate-600 hover:bg-slate-50 text-sm">
-                    ยกเลิก
-                </button>
-                <button onclick="confirmPaymentProcess()" class="w-1/2 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-md transition-all">
-                    ยืนยันการชำระเงิน <i class="fa-solid fa-check ml-1"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Adjacency List Educational Modal -->
-    <div id="adj-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl space-y-4">
-            <div class="flex justify-between items-center border-b pb-3">
-                <h3 class="text-lg font-bold text-slate-800 flex items-center">
-                    <i class="fa-solid fa-code text-brand-600 mr-2"></i>JavaScript Adjacency List Structure
-                </h3>
-                <button onclick="toggleAdjacencyListModal()" class="text-slate-400 hover:text-slate-600 p-1">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-           
-            <p class="text-xs text-slate-600">
-                โครงสร้างข้อมูลกราฟระบบนำทางสวนน้ำ Wave Blue ถูกจัดเก็บด้วย Adjacency List แบบ Weighted Undirected Graph ดังนี้:
-            </p>
-
-            <pre id="adj-code-display" class="bg-slate-900 text-teal-300 p-4 rounded-2xl font-mono text-xs overflow-x-auto max-h-80 leading-relaxed border border-slate-800">
-                <!-- Populated by JS -->
-            </pre>
-
-            <div class="text-right">
-                <button onclick="toggleAdjacencyListModal()" class="px-5 py-2 rounded-xl bg-slate-800 text-white text-xs font-semibold">
-                    ปิดหน้าต่าง
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12">
-        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
-            <div class="flex items-center justify-center space-x-2">
-                <span class="font-bold text-white tracking-wider">WAVE BLUE WATERPARK & ZOO</span>
-            </div>
-            <p class="text-xs text-slate-500">© 2026 Wave Blue Theme Park Inc. All rights reserved.</p>
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs space-y-2">
+            <p>© 2026 Wave Blue Waterpark & Zoo. All Rights Reserved.</p>
+            <p class="text-slate-500">ระบบบริหารจัดการสวนน้ำและสวนสัตว์ด้วย Graph Data Structure & Pathfinding Algorithms</p>
         </div>
     </footer>
 
+    <!-- JS Logic Block -->
     <script>
-        /* ==================== GLOBAL STATE & DATA STRUCTURES ==================== */
-       
-        // Ticket catalog
-        const TICKET_CATALOG = [
-            {
-                id: 't1',
-                name: 'บัตรเข้าชมผู้ใหญ่ (Adult Pass)',
-                description: 'เข้าเล่นเครื่องเล่นสวนน้ำทุกประเภท + ชมสวนสัตว์ Safari Zone',
-                price: 750,
-                icon: 'fa-user'
-            },
-            {
-                id: 't2',
-                name: 'บัตรเข้าชมเด็ก & สูงอายุ (Child / Senior Pass)',
-                description: 'สำหรับเด็กสูง 90-130 ซม. และผู้สูงอายุ 60 ปีขึ้นไป',
-                price: 450,
-                icon: 'fa-child'
-            },
-            {
-                id: 't3',
-                name: 'แพ็กเกจครอบครัว VIP (Family VIP Pass)',
-                description: 'ผู้ใหญ่ 2 ท่าน + เด็ก 2 ท่าน รวมตู้ล็อคเกอร์และ Fast Pass',
-                price: 2200,
-                badge: 'ยอดนิยม',
-                icon: 'fa-users'
-            }
-        ];
-
-        // Addon catalog
-        const ADDON_CATALOG = [
-            { id: 'a1', name: 'เช่าตู้ล็อคเกอร์ขนาดใหญ่ (Locker Rental)', price: 150, icon: 'fa-lock' },
-            { id: 'a2', name: 'เช่าผ้าเช็ดตัว Premium (Towel Rental)', price: 80, icon: 'fa-mattress-pillow' },
-            { id: 'a3', name: 'เช่าห่วงยางครอบครัว (Family Float)', price: 120, icon: 'fa-life-ring' },
-            { id: 'a4', name: 'Fast Pass ช่องทางพิเศษไม่ต้องเข้าคิว', price: 300, icon: 'fa-bolt' }
-        ];
-
-        // Cart State
-        let cart = {
-            tickets: { 't1': 0, 't2': 0, 't3': 0 },
-            addons: { 'a1': 0, 'a2': 0, 'a3': 0, 'a4': 0 },
-            discount: 0,
-            appliedPromo: ''
+        // ==========================================
+        // 1. DATA STRUCTURE (PARK GRAPH ADJACENCY LIST)
+        // ==========================================
+        const nodesData = {
+            "V1": { name: "ซุ้มทางเข้าหลัก (Main Entrance)" },
+            "V2": { name: "สระคลื่นยักษ์ (Wave Pool)" },
+            "V3": { name: "โซนสไลเดอร์ยักษ์ (Tsunami Slide)" },
+            "V4": { name: "โซนสระเด็ก (Kids Aqua Play)" },
+            "V5": { name: "สวนสัตว์ซาฟารี (Safari Zoo)" },
+            "V6": { name: "ลานแสดงโลมา (Dolphin Show)" },
+            "V7": { name: "ศูนย์อาหาร (Food Court)" },
+            "V8": { name: "อาคารปฐมพยาบาล & ล็อกเกอร์ (First Aid & Lockers)" }
         };
 
-        // Paid Orders Storage
-        let paidOrders = [
-            {
-                orderId: 'WB-894210',
-                date: '2026-09-24 10:15 น.',
-                items: [
-                    { name: 'แพ็กเกจครอบครัว VIP (Family VIP Pass)', qty: 1, price: 2200 }
-                ],
-                totalAmount: 2200,
-                status: 'PAID'
+        const parkGraph = {
+            "V1": { "V2": 150, "V8": 100 },
+            "V2": { "V1": 150, "V3": 200, "V4": 120 },
+            "V3": { "V2": 200, "V6": 220 },
+            "V4": { "V2": 120, "V5": 210, "V6": 160, "V7": 130 },
+            "V5": { "V4": 210, "V6": 190, "V7": 250 },
+            "V6": { "V3": 220, "V4": 160, "V5": 190 },
+            "V7": { "V4": 130, "V5": 250, "V8": 180 },
+            "V8": { "V1": 100, "V7": 180 }
+        };
+
+        // Ticket & Cart Store
+        const ticketProducts = [
+            { id: "t1", name: "บัตรผู้ใหญ่ (Adult Pass)", price: 850, desc: "เข้าเล่นสวนน้ำและสวนสัตว์ได้ไม่จำกัด" },
+            { id: "t2", name: "บัตรเด็ก (Child Pass)", price: 450, desc: "สำหรับเด็กสูง 90-130 ซม." },
+            { id: "t3", name: "บัตรครอบครัว (Family Package)", price: 2200, desc: "ผู้ใหญ่ 2 ท่าน + เด็ก 2 ท่าน" }
+        ];
+
+        const addonProducts = [
+            { id: "a1", name: "เช่าล็อกเกอร์ส่วนตัว", price: 150 },
+            { id: "a2", name: "เช่าคาบาน่าส่วนตัว (ทั้งวัน)", price: 800 }
+        ];
+
+        let cart = {};
+        let appliedDiscount = 0;
+
+        // ==========================================
+        // 2. PATHFINDING ALGORITHMS
+        // ==========================================
+        function runDijkstra(graph, startNode, endNode) {
+            const distances = {};
+            const previous = {};
+            const nodes = new Set();
+
+            for (let node in graph) {
+                distances[node] = (node === startNode) ? 0 : Infinity;
+                previous[node] = null;
+                nodes.add(node);
             }
-        ];
 
-        /* ==================== GRAPH THEORY DATA STRUCTURE ==================== */
-        // 8 Vertices representing attractions/facilities
-        const VERTICES = [
-            { id: 'V1', name: 'ทางเข้าหลัก (Entrance Gate)', x: 100, y: 200, icon: 'fa-door-open' },
-            { id: 'V2', name: 'ทะเลคลื่นเทียม (Wave Pool)', x: 260, y: 100, icon: 'fa-water' },
-            { id: 'V3', name: 'สไลเดอร์ยักษ์ (Tsunami Slide)', x: 440, y: 80, icon: 'fa-person-swimming' },
-            { id: 'V4', name: 'สวนสัตว์ซาฟารี (Safari Zone)', x: 620, y: 120, icon: 'fa-hippo' },
-            { id: 'V5', name: 'สายน้ำวน (Lazy River)', x: 260, y: 300, icon: 'fa-life-ring' },
-            { id: 'V6', name: 'ลานแสดงโชว์โลมา (Dolphin Show)', x: 460, y: 320, icon: 'fa-fish' },
-            { id: 'V7', name: 'ศูนย์อาหาร (Food Court)', x: 640, y: 280, icon: 'fa-utensils' },
-            { id: 'V8', name: 'อาคารรับรอง VIP (VIP Lounge)', x: 740, y: 180, icon: 'fa-crown' }
-        ];
-
-        // Weighted Undirected Edges (Distance in meters)
-        const GRAPH_EDGES = [
-            { u: 'V1', v: 'V2', w: 120 },
-            { u: 'V1', v: 'V5', w: 150 },
-            { u: 'V2', v: 'V3', w: 180 },
-            { u: 'V2', v: 'V5', w: 100 },
-            { u: 'V3', v: 'V4', w: 200 },
-            { u: 'V3', v: 'V6', w: 160 },
-            { u: 'V4', v: 'V7', w: 140 },
-            { u: 'V4', v: 'V8', w: 110 },
-            { u: 'V5', v: 'V6', w: 130 },
-            { u: 'V6', v: 'V7', w: 120 },
-            { u: 'V7', v: 'V8', w: 90 }
-        ];
-
-        // Build Adjacency List for JS Processing
-        const adjList = {};
-        VERTICES.forEach(v => adjList[v.id] = []);
-        GRAPH_EDGES.forEach(edge => {
-            adjList[edge.u].push({ node: edge.v, weight: edge.w });
-            adjList[edge.v].push({ node: edge.u, weight: edge.w });
-        });
-
-        /* ==================== TREE STRUCTURE DATA ==================== */
-        // 4 Levels Decision/Zone Tree
-        const PARK_TREE = {
-            id: 'root',
-            name: 'Wave Blue Park (Root)',
-            type: 'Root',
-            children: [
-                {
-                    id: 'node_water',
-                    name: 'โซนสวนน้ำ (Water Park)',
-                    type: 'Parent',
-                    children: [
-                        {
-                            id: 'node_thrill',
-                            name: 'เครื่องเล่นความเร็วสูง',
-                            type: 'Parent',
-                            children: [
-                                { id: 'leaf_tsunami', name: 'Tsunami Slide', type: 'Leaf' },
-                                { id: 'leaf_tornado', name: 'Tornado Funnel', type: 'Leaf' }
-                            ]
-                        },
-                        {
-                            id: 'node_relax',
-                            name: 'โซนพักผ่อนครอบครัว',
-                            type: 'Parent',
-                            children: [
-                                { id: 'leaf_wavepool', name: 'Giant Wave Pool', type: 'Leaf' },
-                                { id: 'leaf_lazyriver', name: 'Lazy River', type: 'Leaf' }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 'node_zoo',
-                    name: 'โซนสวนสัตว์ (Zoo)',
-                    type: 'Parent',
-                    children: [
-                        {
-                            id: 'node_safari',
-                            name: 'แอฟริกัน ซาฟารี',
-                            type: 'Parent',
-                            children: [
-                                { id: 'leaf_giraffe', name: 'ให้อาหารยีราฟ', type: 'Leaf' },
-                                { id: 'leaf_lion', name: 'หุบเขาสิงโต', type: 'Leaf' }
-                            ]
-                        },
-                        {
-                            id: 'node_show',
-                            name: 'ลานแสดงสัตว์',
-                            type: 'Parent',
-                            children: [
-                                { id: 'leaf_dolphin', name: 'โชว์โลมาแสนรู้', type: 'Leaf' }
-                            ]
-                        }
-                    ]
+            while (nodes.size > 0) {
+                let smallest = null;
+                for (let node of nodes) {
+                    if (smallest === null || distances[node] < distances[smallest]) {
+                        smallest = node;
+                    }
                 }
-            ]
-        };
 
-        // Initialization on Load
-        window.onload = function() {
-            renderTicketCatalog();
-            renderAddonCatalog();
-            initGraphSelects();
-            renderGraphCanvas();
-            renderTreeCanvas();
-            renderPaidOrders();
-            setupAdjacencyListCodeDisplay();
-        };
+                if (smallest === null || distances[smallest] === Infinity) break;
+                if (smallest === endNode) break;
 
-        // Navigation Tab Switcher
+                nodes.delete(smallest);
+
+                for (let neighbor in graph[smallest]) {
+                    let alt = distances[smallest] + graph[smallest][neighbor];
+                    if (alt < distances[neighbor]) {
+                        distances[neighbor] = alt;
+                        previous[neighbor] = smallest;
+                    }
+                }
+            }
+
+            const path = [];
+            let curr = endNode;
+            while (curr) {
+                path.unshift(curr);
+                curr = previous[curr];
+            }
+
+            return {
+                path: path[0] === startNode ? path : [],
+                distance: distances[endNode] !== Infinity ? distances[endNode] : 0
+            };
+        }
+
+        function runBFS(graph, startNode, endNode) {
+            const queue = [[startNode]];
+            const visited = new Set([startNode]);
+
+            while (queue.length > 0) {
+                const path = queue.shift();
+                const node = path[path.length - 1];
+
+                if (node === endNode) {
+                    const distance = calculatePathDistance(graph, path);
+                    return { path, distance };
+                }
+
+                for (let neighbor in graph[node]) {
+                    if (!visited.has(neighbor)) {
+                        visited.add(neighbor);
+                        queue.push([...path, neighbor]);
+                    }
+                }
+            }
+
+            return { path: [], distance: 0 };
+        }
+
+        function runDFS(graph, startNode, endNode) {
+            const visited = new Set();
+            let resultPath = [];
+
+            function dfsHelper(currentNode, currentPath) {
+                if (resultPath.length > 0) return;
+                visited.add(currentNode);
+
+                if (currentNode === endNode) {
+                    resultPath = [...currentPath];
+                    return;
+                }
+
+                for (let neighbor in graph[currentNode]) {
+                    if (!visited.has(neighbor)) {
+                        dfsHelper(neighbor, [...currentPath, neighbor]);
+                    }
+                }
+            }
+
+            dfsHelper(startNode, [startNode]);
+            const distance = calculatePathDistance(graph, resultPath);
+            return { path: resultPath, distance };
+        }
+
+        function calculatePathDistance(graph, path) {
+            let totalDist = 0;
+            for (let i = 0; i < path.length - 1; i++) {
+                const u = path[i];
+                const v = path[i + 1];
+                if (graph[u] && graph[u][v]) {
+                    totalDist += graph[u][v];
+                }
+            }
+            return totalDist;
+        }
+
+        // ==========================================
+        // 3. UI CONTROLLER & APP LOGIC
+        // ==========================================
         function switchTab(tabId) {
-            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
             document.getElementById(tabId).classList.remove('hidden');
 
             document.querySelectorAll('.nav-btn').forEach(btn => {
@@ -790,312 +655,13 @@
                 activeNav.classList.remove('text-slate-600');
             }
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (tabId === 'page4') {
+                renderCheckoutPage();
+            }
         }
 
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
-
-        /* ==================== PAGE 2: CART & BOOKING LOGIC ==================== */
-        function renderTicketCatalog() {
-            const container = document.getElementById('ticket-options-container');
-            container.innerHTML = TICKET_CATALOG.map(t => `
-                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="flex items-start space-x-4">
-                        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl flex-shrink-0">
-                            <i class="fa-solid ${t.icon}"></i>
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <h4 class="font-bold text-slate-800">${t.name}</h4>
-                                ${t.badge ? `<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-bold">${t.badge}</span>` : ''}
-                            </div>
-                            <p class="text-xs text-slate-500 mt-1">${t.description}</p>
-                            <span class="text-lg font-extrabold text-brand-600 mt-2 block">${t.price} ฿ <span class="text-xs font-normal text-slate-400">/ ท่าน</span></span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3 self-end sm:self-center bg-slate-50 p-1.5 rounded-xl border">
-                        <button onclick="updateQty('tickets', '${t.id}', -1)" class="w-8 h-8 rounded-lg bg-white shadow-sm font-bold text-slate-600 hover:bg-slate-100">-</button>
-                        <span id="qty-tickets-${t.id}" class="w-8 text-center font-bold text-slate-800">0</span>
-                        <button onclick="updateQty('tickets', '${t.id}', 1)" class="w-8 h-8 rounded-lg bg-brand-600 font-bold text-white shadow-sm hover:bg-brand-700">+</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderAddonCatalog() {
-            const container = document.getElementById('addon-options-container');
-            container.innerHTML = ADDON_CATALOG.map(a => `
-                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-sm">
-                            <i class="fa-solid ${a.icon}"></i>
-                        </div>
-                        <div>
-                            <h5 class="text-xs font-bold text-slate-800">${a.name}</h5>
-                            <span class="text-xs font-semibold text-brand-600">${a.price} ฿</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2 bg-slate-50 p-1 rounded-lg border">
-                        <button onclick="updateQty('addons', '${a.id}', -1)" class="w-7 h-7 rounded bg-white text-xs font-bold shadow-sm">-</button>
-                        <span id="qty-addons-${a.id}" class="w-6 text-center font-bold text-xs text-slate-800">0</span>
-                        <button onclick="updateQty('addons', '${a.id}', 1)" class="w-7 h-7 rounded bg-slate-800 text-white text-xs font-bold shadow-sm">+</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function updateQty(category, id, delta) {
-            const current = cart[category][id] || 0;
-            const updated = Math.max(0, current + delta);
-            cart[category][id] = updated;
-            document.getElementById(`qty-${category}-${id}`).innerText = updated;
-            calculateCartTotals();
-        }
-
-        function calculateCartTotals() {
-            let subtotal = 0;
-            let itemsCount = 0;
-            let cartListHtml = '';
-
-            // Calculate Tickets
-            TICKET_CATALOG.forEach(t => {
-                const qty = cart.tickets[t.id];
-                if (qty > 0) {
-                    const itemTotal = qty * t.price;
-                    subtotal += itemTotal;
-                    itemsCount += qty;
-                    cartListHtml += `
-                        <div class="py-2 flex justify-between items-center">
-                            <div>
-                                <p class="font-semibold text-slate-800">${t.name}</p>
-                                <p class="text-xs text-slate-400">${qty} x ${t.price} ฿</p>
-                            </div>
-                            <span class="font-bold text-slate-700">${itemTotal} ฿</span>
-                        </div>
-                    `;
-                }
-            });
-
-            // Calculate Addons
-            ADDON_CATALOG.forEach(a => {
-                const qty = cart.addons[a.id];
-                if (qty > 0) {
-                    const itemTotal = qty * a.price;
-                    subtotal += itemTotal;
-                    itemsCount += qty;
-                    cartListHtml += `
-                        <div class="py-2 flex justify-between items-center">
-                            <div>
-                                <p class="font-semibold text-slate-800">${a.name}</p>
-                                <p class="text-xs text-slate-400">${qty} x ${a.price} ฿</p>
-                            </div>
-                            <span class="font-bold text-slate-700">${itemTotal} ฿</span>
-                        </div>
-                    `;
-                }
-            });
-
-            const discountAmount = subtotal * cart.discount;
-            const finalTotal = subtotal - discountAmount;
-
-            document.getElementById('cart-items-list').innerHTML = cartListHtml || `
-                <div class="text-center py-8 text-slate-400">
-                    <i class="fa-solid fa-basket-shopping text-3xl mb-2"></i>
-                    <p>ยังไม่มีรายการในตะกร้า</p>
-                </div>
-            `;
-
-            document.getElementById('summary-subtotal').innerText = `${subtotal.toLocaleString()} ฿`;
-            document.getElementById('summary-discount').innerText = `-${discountAmount.toLocaleString()} ฿`;
-            document.getElementById('summary-total').innerText = `${finalTotal.toLocaleString()} ฿`;
-
-            const checkoutBtn = document.getElementById('checkout-btn');
-            checkoutBtn.disabled = itemsCount === 0;
-
-            // Cart badge update
-            const badge = document.getElementById('cart-badge');
-            if (itemsCount > 0) {
-                badge.innerText = itemsCount;
-                badge.classList.remove('hidden');
-            } else {
-                badge.classList.add('hidden');
-            }
-        }
-
-        function applyPromoCode() {
-            const input = document.getElementById('promo-input').value.trim().toUpperCase();
-            const msg = document.getElementById('promo-message');
-
-            if (input === 'WB10') {
-                cart.discount = 0.10;
-                cart.appliedPromo = 'WB10';
-                msg.innerText = 'ใช้รหัสส่วนลด 10% สำเร็จ!';
-                msg.className = 'text-xs mt-1 text-emerald-600 font-semibold block';
-            } else {
-                cart.discount = 0;
-                cart.appliedPromo = '';
-                msg.innerText = 'รหัสส่วนลดไม่ถูกต้อง';
-                msg.className = 'text-xs mt-1 text-rose-500 font-semibold block';
-            }
-            calculateCartTotals();
-        }
-
-        function openCheckoutModal() {
-            let subtotal = 0;
-            TICKET_CATALOG.forEach(t => subtotal += (cart.tickets[t.id] || 0) * t.price);
-            ADDON_CATALOG.forEach(a => subtotal += (cart.addons[a.id] || 0) * a.price);
-            const total = subtotal * (1 - cart.discount);
-
-            document.getElementById('modal-pay-amount').innerText = `${total.toLocaleString()} ฿`;
-            document.getElementById('checkout-modal').classList.remove('hidden');
-        }
-
-        function closeCheckoutModal() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-        }
-
-        function confirmPaymentProcess() {
-            let itemsSummary = [];
-            let subtotal = 0;
-
-            TICKET_CATALOG.forEach(t => {
-                const qty = cart.tickets[t.id];
-                if (qty > 0) {
-                    itemsSummary.push({ name: t.name, qty: qty, price: t.price });
-                    subtotal += qty * t.price;
-                }
-            });
-
-            ADDON_CATALOG.forEach(a => {
-                const qty = cart.addons[a.id];
-                if (qty > 0) {
-                    itemsSummary.push({ name: a.name, qty: qty, price: a.price });
-                    subtotal += qty * a.price;
-                }
-            });
-
-            const finalAmount = subtotal * (1 - cart.discount);
-            const newOrderId = `WB-${Math.floor(100000 + Math.random() * 900000)}`;
-            const nowStr = new Date().toLocaleString('th-TH');
-
-            paidOrders.unshift({
-                orderId: newOrderId,
-                date: nowStr,
-                items: itemsSummary,
-                totalAmount: finalAmount,
-                status: 'PAID'
-            });
-
-            // Reset Cart
-            cart = { tickets: { 't1': 0, 't2': 0, 't3': 0 }, addons: { 'a1': 0, 'a2': 0, 'a3': 0, 'a4': 0 }, discount: 0, appliedPromo: '' };
-            renderTicketCatalog();
-            renderAddonCatalog();
-            calculateCartTotals();
-
-            closeCheckoutModal();
-            renderPaidOrders();
-            switchTab('page4');
-        }
-
-        /* ==================== PAGE 3: GRAPH ALGORITHMS & CANVAS ==================== */
-        function initGraphSelects() {
-            const startSel = document.getElementById('graph-start-select');
-            const endSel = document.getElementById('graph-end-select');
-
-            const options = VERTICES.map(v => `<option value="${v.id}">${v.id}: ${v.name}</option>`).join('');
-            startSel.innerHTML = options;
-            endSel.innerHTML = options;
-            endSel.value = 'V8'; // Default destination
-        }
-
-        function renderGraphCanvas(highlightPath = [], highlightEdges = []) {
-            const svg = document.getElementById('graph-canvas');
-            svg.innerHTML = '';
-
-            // Render Edges
-            GRAPH_EDGES.forEach(edge => {
-                const u = VERTICES.find(v => v.id === edge.u);
-                const v = VERTICES.find(v => v.id === edge.v);
-                const isHighlighted = highlightEdges.some(e => (e.u === edge.u && e.v === edge.v) || (e.u === edge.v && e.v === edge.u));
-
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', u.x);
-                line.setAttribute('y1', u.y);
-                line.setAttribute('x2', v.x);
-                line.setAttribute('y2', v.y);
-                line.setAttribute('stroke', isHighlighted ? '#38bdf8' : '#334155');
-                line.setAttribute('stroke-width', isHighlighted ? '4' : '2');
-                if (isHighlighted) line.setAttribute('class', 'active-edge');
-                svg.appendChild(line);
-
-                // Weight Label
-                const midX = (u.x + v.x) / 2;
-                const midY = (u.y + v.y) / 2;
-                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-                rect.setAttribute('x', midX - 14);
-                rect.setAttribute('y', midY - 9);
-                rect.setAttribute('width', '28');
-                rect.setAttribute('height', '18');
-                rect.setAttribute('rx', '4');
-                rect.setAttribute('fill', '#0f172a');
-                rect.setAttribute('stroke', '#334155');
-                svg.appendChild(rect);
-
-                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                text.setAttribute('x', midX);
-                text.setAttribute('y', midY + 4);
-                text.setAttribute('fill', isHighlighted ? '#38bdf8' : '#94a3b8');
-                text.setAttribute('font-size', '10');
-                text.setAttribute('font-weight', 'bold');
-                text.setAttribute('text-anchor', 'middle');
-                text.textContent = `${edge.w}m`;
-                svg.appendChild(text);
-            });
-
-            // Render Vertices
-            VERTICES.forEach(node => {
-                const isSelected = highlightPath.includes(node.id);
-                const isStart = highlightPath[0] === node.id;
-                const isEnd = highlightPath[highlightPath.length - 1] === node.id;
-
-                const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                g.setAttribute('class', 'cursor-pointer');
-
-                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                circle.setAttribute('cx', node.x);
-                circle.setAttribute('cy', node.y);
-                circle.setAttribute('r', isSelected ? '22' : '18');
-                circle.setAttribute('fill', isStart ? '#10b981' : (isEnd ? '#f43f5e' : (isSelected ? '#0284c7' : '#1e293b')));
-                circle.setAttribute('stroke', isSelected ? '#38bdf8' : '#475569');
-                circle.setAttribute('stroke-width', '3');
-                g.appendChild(circle);
-
-                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                text.setAttribute('x', node.x);
-                text.setAttribute('y', node.y + 4);
-                text.setAttribute('fill', '#ffffff');
-                text.setAttribute('font-size', '11');
-                text.setAttribute('font-weight', 'bold');
-                text.setAttribute('text-anchor', 'middle');
-                text.textContent = node.id;
-                g.appendChild(text);
-
-                // Label below node
-                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                label.setAttribute('x', node.x);
-                label.setAttribute('y', node.y + 36);
-                label.setAttribute('fill', isSelected ? '#38bdf8' : '#cbd5e1');
-                label.setAttribute('font-size', '11');
-                label.setAttribute('font-weight', '500');
-                label.setAttribute('text-anchor', 'middle');
-                label.textContent = node.name.split(' ')[0];
-                g.appendChild(label);
-
-                svg.appendChild(g);
-            });
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
         function calculateGraphRoute() {
@@ -1104,340 +670,233 @@
             const algo = document.getElementById('graph-algorithm-select').value;
 
             if (start === end) {
-                alert('โปรดเลือกจุดเริ่มต้นและจุดหมายปลายทางให้แตกต่างกัน');
+                alert("กรุณาเลือกจุดเริ่มต้นและจุดหมายปลายทางให้ต่างกัน");
                 return;
             }
 
-            let resultPath = [];
-            let totalWeight = 0;
+            let routeResult = { path: [], distance: 0 };
+            let algoBadgeText = "";
 
             if (algo === 'dijkstra') {
-                const res = dijkstraAlgorithm(start, end);
-                resultPath = res.path;
-                totalWeight = res.distance;
+                routeResult = runDijkstra(parkGraph, start, end);
+                algoBadgeText = "Dijkstra (สั้นที่สุด)";
             } else if (algo === 'bfs') {
-                resultPath = bfsAlgorithm(start, end);
-                totalWeight = calculatePathWeight(resultPath);
+                routeResult = runBFS(parkGraph, start, end);
+                algoBadgeText = "BFS (จุดแวะน้อยที่สุด)";
             } else if (algo === 'dfs') {
-                resultPath = dfsAlgorithm(start, end);
-                totalWeight = calculatePathWeight(resultPath);
+                routeResult = runDFS(parkGraph, start, end);
+                algoBadgeText = "DFS (สำรวจเชิงลึก)";
             }
 
-            // Highlight Edges
-            const highlightEdges = [];
-            for (let i = 0; i < resultPath.length - 1; i++) {
-                highlightEdges.push({ u: resultPath[i], v: resultPath[i + 1] });
-            }
-
-            renderGraphCanvas(resultPath, highlightEdges);
-
-            // Display Results
-            const resultBox = document.getElementById('route-result-box');
-            resultBox.classList.remove('hidden');
-
-            document.getElementById('route-algo-badge').innerText = algo.toUpperCase();
-            document.getElementById('route-path-text').innerText = resultPath.join(' ➔ ');
-            document.getElementById('route-distance-text').innerText = `${totalWeight} เมตร`;
-            document.getElementById('route-time-text').innerText = `${Math.ceil(totalWeight / 70)} นาที`;
-        }
-
-        // Dijkstra Algorithm
-        function dijkstraAlgorithm(start, end) {
-            const distances = {};
-            const previous = {};
-            const nodes = new Set();
-
-            VERTICES.forEach(v => {
-                distances[v.id] = Infinity;
-                previous[v.id] = null;
-                nodes.add(v.id);
-            });
-
-            distances[start] = 0;
-
-            while (nodes.size > 0) {
-                let smallest = Array.from(nodes).reduce((minNode, node) =>
-                    distances[node] < distances[minNode] ? node : minNode, Array.from(nodes)[0]);
-
-                if (smallest === end || distances[smallest] === Infinity) break;
-                nodes.delete(smallest);
-
-                adjList[smallest].forEach(neighbor => {
-                    let alt = distances[smallest] + neighbor.weight;
-                    if (alt < distances[neighbor.node]) {
-                        distances[neighbor.node] = alt;
-                        previous[neighbor.node] = smallest;
-                    }
-                });
-            }
-
-            const path = [];
-            let curr = end;
-            while (curr) {
-                path.unshift(curr);
-                curr = previous[curr];
-            }
-
-            return { path, distance: distances[end] };
-        }
-
-        // BFS Algorithm
-        function bfsAlgorithm(start, end) {
-            const queue = [[start]];
-            const visited = new Set([start]);
-
-            while (queue.length > 0) {
-                const path = queue.shift();
-                const node = path[path.length - 1];
-
-                if (node === end) return path;
-
-                adjList[node].forEach(neighbor => {
-                    if (!visited.has(neighbor.node)) {
-                        visited.add(neighbor.node);
-                        queue.push([...path, neighbor.node]);
-                    }
-                });
-            }
-            return [];
-        }
-
-        // DFS Algorithm
-        function dfsAlgorithm(start, end) {
-            const visited = new Set();
-            let resultPath = [];
-
-            function dfs(curr, path) {
-                visited.add(curr);
-                if (curr === end) {
-                    resultPath = [...path];
-                    return true;
-                }
-
-                for (let neighbor of adjList[curr]) {
-                    if (!visited.has(neighbor.node)) {
-                        if (dfs(neighbor.node, [...path, neighbor.node])) return true;
-                    }
-                }
-                return false;
-            }
-
-            dfs(start, [start]);
-            return resultPath;
-        }
-
-        function calculatePathWeight(path) {
-            let total = 0;
-            for (let i = 0; i < path.length - 1; i++) {
-                const edge = GRAPH_EDGES.find(e => (e.u === path[i] && e.v === path[i + 1]) || (e.u === path[i + 1] && e.v === path[i]));
-                if (edge) total += edge.w;
-            }
-            return total;
-        }
-
-        function setupAdjacencyListCodeDisplay() {
-            const display = document.getElementById('adj-code-display');
-            const cleanList = {};
-            VERTICES.forEach(v => {
-                cleanList[v.id] = adjList[v.id].map(item => `${item.node}(${item.weight}m)`);
-            });
-            display.textContent = `// JavaScript Adjacency List Structure (Wave Blue Graph)\nconst parkAdjacencyList = ` + JSON.stringify(cleanList, null, 2) + `;`;
-        }
-
-        function toggleAdjacencyListModal() {
-            document.getElementById('adj-modal').classList.toggle('hidden');
-        }
-
-        /* ==================== PAGE 3: TREE VISUALIZATION & TRAVERSAL ==================== */
-        const treeNodePositions = {
-            'root': { x: 450, y: 50 },
-            'node_water': { x: 230, y: 150 },
-            'node_zoo': { x: 670, y: 150 },
-            'node_thrill': { x: 120, y: 260 },
-            'node_relax': { x: 340, y: 260 },
-            'node_safari': { x: 560, y: 260 },
-            'node_show': { x: 780, y: 260 },
-            'leaf_tsunami': { x: 70, y: 380 },
-            'leaf_tornado': { x: 170, y: 380 },
-            'leaf_wavepool': { x: 290, y: 380 },
-            'leaf_lazyriver': { x: 390, y: 380 },
-            'leaf_giraffe': { x: 510, y: 380 },
-            'leaf_lion': { x: 610, y: 380 },
-            'leaf_dolphin': { x: 780, y: 380 }
-        };
-
-        function renderTreeCanvas(activeNodeId = null) {
-            const svg = document.getElementById('tree-canvas');
-            svg.innerHTML = '';
-
-            // Helper to draw tree edges recursively
-            function drawTreeEdges(node) {
-                if (!node.children) return;
-                const parentPos = treeNodePositions[node.id];
-
-                node.children.forEach(child => {
-                    const childPos = treeNodePositions[child.id];
-                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line.setAttribute('x1', parentPos.x);
-                    line.setAttribute('y1', parentPos.y);
-                    line.setAttribute('x2', childPos.x);
-                    line.setAttribute('y2', childPos.y);
-                    line.setAttribute('stroke', '#334155');
-                    line.setAttribute('stroke-width', '2');
-                    svg.appendChild(line);
-
-                    drawTreeEdges(child);
-                });
-            }
-
-            drawTreeEdges(PARK_TREE);
-
-            // Helper to draw nodes recursively
-            function drawTreeNodes(node) {
-                const pos = treeNodePositions[node.id];
-                const isActive = activeNodeId === node.id;
-
-                const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                g.setAttribute('class', 'cursor-pointer');
-                g.onclick = () => showTreeNodeDetail(node);
-
-                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-                rect.setAttribute('x', pos.x - 50);
-                rect.setAttribute('y', pos.y - 18);
-                rect.setAttribute('width', '100');
-                rect.setAttribute('height', '36');
-                rect.setAttribute('rx', '10');
-                rect.setAttribute('fill', isActive ? '#0284c7' : (node.type === 'Root' ? '#0f172a' : (node.type === 'Parent' ? '#1e293b' : '#047857')));
-                rect.setAttribute('stroke', isActive ? '#38bdf8' : (node.type === 'Root' ? '#f59e0b' : '#475569'));
-                rect.setAttribute('stroke-width', '2');
-                g.appendChild(rect);
-
-                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                text.setAttribute('x', pos.x);
-                text.setAttribute('y', pos.y + 4);
-                text.setAttribute('fill', '#ffffff');
-                text.setAttribute('font-size', '10');
-                text.setAttribute('font-weight', 'bold');
-                text.setAttribute('text-anchor', 'middle');
-                text.textContent = node.name.length > 12 ? node.name.substring(0, 10) + '..' : node.name;
-                g.appendChild(text);
-
-                svg.appendChild(g);
-
-                if (node.children) node.children.forEach(child => drawTreeNodes(child));
-            }
-
-            drawTreeNodes(PARK_TREE);
-        }
-
-        function showTreeNodeDetail(node) {
-            renderTreeCanvas(node.id);
-            document.getElementById('detail-node-title').innerText = `${node.name} (${node.type})`;
-            document.getElementById('detail-node-type').innerText = node.type;
-            document.getElementById('detail-children').innerText = node.children ? node.children.map(c => c.name).join(', ') : 'ไม่มี (Leaf Node)';
-            document.getElementById('detail-path').innerText = `Root ➔ ... ➔ ${node.name}`;
-        }
-
-        // Tree Traversal Animations
-        function runTreeTraversal(type) {
-            const sequence = [];
-
-            function preorder(node) {
-                if (!node) return;
-                sequence.push(node);
-                if (node.children) node.children.forEach(c => preorder(c));
-            }
-
-            function postorder(node) {
-                if (!node) return;
-                if (node.children) node.children.forEach(c => postorder(c));
-                sequence.push(node);
-            }
-
-            function bfs(node) {
-                const queue = [node];
-                while (queue.length > 0) {
-                    const curr = queue.shift();
-                    sequence.push(curr);
-                    if (curr.children) queue.push(...curr.children);
-                }
-            }
-
-            if (type === 'preorder') preorder(PARK_TREE);
-            if (type === 'postorder') postorder(PARK_TREE);
-            if (type === 'bfs') bfs(PARK_TREE);
-
-            const output = document.getElementById('tree-traversal-output');
-            output.classList.remove('hidden');
-
-            let index = 0;
-            const interval = setInterval(() => {
-                if (index >= sequence.length) {
-                    clearInterval(interval);
-                    return;
-                }
-                const currNode = sequence[index];
-                renderTreeCanvas(currNode.id);
-                document.getElementById('traversal-log-sequence').innerText = sequence.slice(0, index + 1).map(n => n.name).join(' ➔ ');
-                index++;
-            }, 600);
-        }
-
-        /* ==================== PAGE 4: ORDERS & E-TICKETS LOGIC ==================== */
-        function renderPaidOrders() {
-            const container = document.getElementById('paid-orders-container');
-
-            if (paidOrders.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 bg-white rounded-3xl border border-slate-200">
-                        <i class="fa-solid fa-receipt text-4xl text-slate-300 mb-3"></i>
-                        <p class="text-slate-500 font-medium">ยังไม่มีรายการสั่งซื้อที่ชำระเงินแล้ว</p>
-                    </div>
-                `;
+            if (routeResult.path.length === 0) {
+                alert("ไม่พบเส้นทางเชื่อมต่อระหว่างจุดสองจุดนี้");
                 return;
             }
 
-            container.innerHTML = paidOrders.map(order => `
-                <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8 space-y-6">
-                    <!-- Ticket Header -->
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-4 gap-2">
-                        <div>
-                            <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
-                                <i class="fa-solid fa-circle-check mr-1"></i>ชำระเงินเรียบร้อย (PAID)
-                            </span>
-                            <h3 class="text-xl font-extrabold text-slate-800 mt-2">หมายเลขคำสั่งซื้อ: ${order.orderId}</h3>
-                            <p class="text-xs text-slate-400">วันที่ทำรายการ: ${order.date}</p>
-                        </div>
-                        <div class="text-left sm:text-right">
-                            <span class="text-xs text-slate-400 block">ยอดรวมทั้งสิ้น</span>
-                            <span class="text-2xl font-extrabold text-brand-600">${order.totalAmount.toLocaleString()} ฿</span>
-                        </div>
-                    </div>
+            highlightMapPath(routeResult.path);
 
-                    <!-- Items Breakdown & QR Code Grid -->
-                    <div class="grid md:grid-cols-3 gap-6 items-center">
-                        <div class="md:col-span-2 space-y-3">
-                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider">รายการบัตรและบริการที่ซื้อ:</h4>
-                            <div class="space-y-2 divide-y divide-slate-100">
-                                ${order.items.map(item => `
-                                    <div class="pt-2 flex justify-between text-sm">
-                                        <span class="font-medium text-slate-700">${item.name} x ${item.qty}</span>
-                                        <span class="font-bold text-slate-800">${(item.price * item.qty).toLocaleString()} ฿</span>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
+            const estimatedMinutes = Math.max(1, Math.round(routeResult.distance / 80));
 
-                        <!-- E-Ticket Digital Pass -->
-                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center space-y-2">
-                            <span class="text-xs font-bold text-brand-600 uppercase">e-Ticket Digital Pass</span>
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${order.orderId}" alt="Ticket QR" class="mx-auto rounded-lg shadow-sm" onerror="this.src='https://placehold.co/120x120/0284c7/ffffff?text=TICKET+QR'">
-                            <p class="text-[10px] text-slate-400">แสดง QR Code นี้แก่เจ้าหน้าที่หน้าประตูทางเข้า</p>
-                        </div>
+            document.getElementById('route-algo-badge').innerText = algoBadgeText;
+            document.getElementById('route-path-text').innerText = routeResult.path.map(n => `${n} (${nodesData[n].name.split(' ')[0]})`).join(" ➔ ");
+            document.getElementById('route-distance-text').innerText = `${routeResult.distance} เมตร`;
+            document.getElementById('route-time-text').innerText = `${estimatedMinutes} นาที`;
+            document.getElementById('route-result-box').classList.remove('hidden');
+        }
+
+        function highlightMapPath(path) {
+            document.querySelectorAll('#map-edges line').forEach(line => {
+                line.classList.remove('path-active');
+            });
+
+            for (let i = 0; i < path.length - 1; i++) {
+                const u = path[i];
+                const v = path[i + 1];
+
+                const edgeDirect = document.getElementById(`edge-${u}-${v}`);
+                const edgeReverse = document.getElementById(`edge-${v}-${u}`);
+
+                if (edgeDirect) edgeDirect.classList.add('path-active');
+                if (edgeReverse) edgeReverse.classList.add('path-active');
+            }
+        }
+
+        let mapClickToggle = false;
+        function selectNodeFromMap(nodeId) {
+            const startSelect = document.getElementById('graph-start-select');
+            const endSelect = document.getElementById('graph-end-select');
+
+            if (!mapClickToggle) {
+                startSelect.value = nodeId;
+                mapClickToggle = true;
+            } else {
+                if (startSelect.value === nodeId) return;
+                endSelect.value = nodeId;
+                mapClickToggle = false;
+                calculateGraphRoute();
+            }
+        }
+
+        function toggleTreeNode(childrenId) {
+            const el = document.getElementById(childrenId);
+            if (el) el.classList.toggle('hidden');
+        }
+
+        // Cart & Booking System
+        function initProducts() {
+            const ticketContainer = document.getElementById('ticket-options-container');
+            const addonContainer = document.getElementById('addon-options-container');
+
+            ticketContainer.innerHTML = ticketProducts.map(item => `
+                <div class="glass-panel p-5 rounded-2xl border border-slate-200 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-slate-800">${item.name}</h3>
+                        <p class="text-xs text-slate-500 mt-1">${item.desc}</p>
+                        <span class="text-brand-600 font-extrabold text-lg mt-2 block">${item.price} ฿</span>
                     </div>
+                    <button onclick="addToCart('${item.id}', '${item.name}', ${item.price})" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm rounded-xl transition-all">
+                        + เพิ่มลงตะกร้า
+                    </button>
+                </div>
+            `).join('');
+
+            addonContainer.innerHTML = addonProducts.map(item => `
+                <div class="glass-panel p-4 rounded-2xl border border-slate-200 flex justify-between items-center">
+                    <div>
+                        <h4 class="font-bold text-sm text-slate-800">${item.name}</h4>
+                        <span class="text-brand-600 font-bold text-sm block">${item.price} ฿</span>
+                    </div>
+                    <button onclick="addToCart('${item.id}', '${item.name}', ${item.price})" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-semibold text-xs rounded-lg transition-all">
+                        + เพิ่ม
+                    </button>
                 </div>
             `).join('');
         }
+
+        function addToCart(id, name, price) {
+            if (cart[id]) {
+                cart[id].qty += 1;
+            } else {
+                cart[id] = { name, price, qty: 1 };
+            }
+            updateCartUI();
+        }
+
+        function updateCartQty(id, delta) {
+            if (cart[id]) {
+                cart[id].qty += delta;
+                if (cart[id].qty <= 0) delete cart[id];
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartList = document.getElementById('cart-items-list');
+            const badge = document.getElementById('cart-badge');
+
+            const keys = Object.keys(cart);
+            let totalItems = 0;
+            let subtotal = 0;
+
+            if (keys.length === 0) {
+                cartList.innerHTML = `
+                    <div class="text-center py-8 text-slate-400">
+                        <i class="fa-solid fa-basket-shopping text-3xl mb-2"></i>
+                        <p>ยังไม่มีรายการในตะกร้า</p>
+                    </div>`;
+                badge.classList.add('hidden');
+            } else {
+                cartList.innerHTML = keys.map(id => {
+                    const item = cart[id];
+                    totalItems += item.qty;
+                    subtotal += item.price * item.qty;
+                    return `
+                        <div class="flex justify-between items-center py-2">
+                            <div>
+                                <p class="font-semibold text-slate-800">${item.name}</p>
+                                <p class="text-xs text-slate-500">${item.price} ฿ x ${item.qty}</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button onclick="updateCartQty('${id}', -1)" class="w-6 h-6 bg-slate-200 rounded flex items-center justify-center font-bold text-xs">-</button>
+                                <span class="font-semibold text-xs">${item.qty}</span>
+                                <button onclick="updateCartQty('${id}', 1)" class="w-6 h-6 bg-slate-200 rounded flex items-center justify-center font-bold text-xs">+</button>
+                            </div>
+                        </div>`;
+                }).join('');
+
+                badge.innerText = totalItems;
+                badge.classList.remove('hidden');
+            }
+
+            const discountAmount = subtotal * appliedDiscount;
+            const total = subtotal - discountAmount;
+
+            document.getElementById('summary-subtotal').innerText = `${subtotal} ฿`;
+            document.getElementById('summary-discount').innerText = `-${discountAmount} ฿`;
+            document.getElementById('summary-total').innerText = `${total} ฿`;
+        }
+
+        function applyPromoCode() {
+            const code = document.getElementById('promo-input').value.trim().toUpperCase();
+            const msg = document.getElementById('promo-message');
+
+            if (code === "WB10") {
+                appliedDiscount = 0.10;
+                msg.innerText = "ส่วนลด 10% ถูกใช้งานแล้ว";
+                msg.className = "text-xs mt-1 text-emerald-600 font-semibold";
+            } else {
+                appliedDiscount = 0;
+                msg.innerText = "รหัสส่วนลดไม่ถูกต้อง";
+                msg.className = "text-xs mt-1 text-rose-500 font-semibold";
+            }
+            msg.classList.remove('hidden');
+            updateCartUI();
+        }
+
+        function renderCheckoutPage() {
+            const container = document.getElementById('checkout-summary-list');
+            const totalEl = document.getElementById('final-checkout-total');
+
+            const keys = Object.keys(cart);
+            let subtotal = 0;
+
+            if (keys.length === 0) {
+                container.innerHTML = `<p class="text-center text-slate-400 py-4">ไม่มีรายการชำระเงิน กรุณาเลือกบัตรก่อน</p>`;
+                totalEl.innerText = "0 ฿";
+                return;
+            }
+
+            container.innerHTML = keys.map(id => {
+                const item = cart[id];
+                const itemTotal = item.price * item.qty;
+                subtotal += itemTotal;
+                return `
+                    <div class="flex justify-between py-2 text-slate-700">
+                        <span>${item.name} (x${item.qty})</span>
+                        <span class="font-semibold">${itemTotal} ฿</span>
+                    </div>`;
+            }).join('');
+
+            const total = subtotal - (subtotal * appliedDiscount);
+            totalEl.innerText = `${total} ฿`;
+        }
+
+        function processPayment() {
+            if (Object.keys(cart).length === 0) {
+                alert("กรุณาเลือกบัตรเข้าชมก่อนชำระเงิน");
+                return;
+            }
+            alert("ชำระเงินสำเร็จ! ขอบคุณที่เลือกใช้บริการ Wave Blue Waterpark");
+            cart = {};
+            appliedDiscount = 0;
+            updateCartUI();
+            switchTab('page1');
+        }
+
+        // Initializer
+        window.onload = function() {
+            initProducts();
+        };
     </script>
 </body>
 </html>
